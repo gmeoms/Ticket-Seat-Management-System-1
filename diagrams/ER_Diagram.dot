@@ -1,0 +1,27 @@
+digraph ER {
+    graph [rankdir=LR, bgcolor="white", pad="0.3", nodesep="0.5", ranksep="0.8"];
+    node [shape=record, fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+
+    users [label="{USERS|PK user_id\lfull_name\lemail\lphone\lcreated_at\l}"];
+    venues [label="{VENUES|PK venue_id\lvenue_name\lcity\laddress\l}"];
+    screens [label="{SCREENS|PK screen_id\lFK venue_id\lscreen_name\ltotal_seats\l}"];
+    seats [label="{SEATS|PK seat_id\lFK screen_id\lseat_row\lseat_number\lseat_type\l}"];
+    events [label="{EVENTS|PK event_id\levent_name\levent_type\lduration_minutes\ldescription\l}"];
+    shows [label="{SHOWS|PK show_id\lFK event_id\lFK screen_id\lshow_date\lstart_time\lbase_price\lstatus\l}"];
+    bookings [label="{BOOKINGS|PK booking_id\lFK user_id\lFK show_id\lbooking_time\lbooking_status\ltotal_amount\l}"];
+    booking_seats [label="{BOOKING_SEATS|PK booking_seat_id\lFK booking_id\lFK seat_id\lprice\l}"];
+    payments [label="{PAYMENTS|PK payment_id\lFK booking_id\lpayment_method\lamount\lpayment_status\lpaid_at\l}"];
+    tickets [label="{TICKETS|PK ticket_id\lFK booking_id\lticket_code\lissued_at\l}"];
+
+    users -> bookings [label="1 : N"];
+    venues -> screens [label="1 : N"];
+    screens -> seats [label="1 : N"];
+    events -> shows [label="1 : N"];
+    screens -> shows [label="1 : N"];
+    shows -> bookings [label="1 : N"];
+    bookings -> booking_seats [label="1 : N"];
+    seats -> booking_seats [label="1 : N"];
+    bookings -> payments [label="1 : 0..1"];
+    bookings -> tickets [label="1 : 0..1"];
+}

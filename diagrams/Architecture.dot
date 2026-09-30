@@ -1,0 +1,12 @@
+digraph Architecture {
+    graph [rankdir=LR, bgcolor="white", pad="0.3"];
+    node [shape=box, style="rounded", fontname="Arial", fontsize=11];
+    user [label="User / Viva Demo"];
+    cli [label="Python Terminal Application\nterminal_app/app.py"];
+    mysql [label="MySQL Server\nticket_seat_management"];
+    tables [label="10 Relational Tables\nUsers • Venues • Screens • Seats\nEvents • Shows • Bookings\nBooking Seats • Payments • Tickets"];
+
+    user -> cli [label="menu / input"];
+    cli -> mysql [label="mysql-connector-python"];
+    mysql -> tables [label="SQL / transactions"];
+}
