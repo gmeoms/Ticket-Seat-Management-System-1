@@ -94,7 +94,7 @@ Run:
 SOURCE path/to/database/sample_data.sql;
 ```
 
-### 4. Create the application user
+### 4. Create the application user:
 
 If you have not already created it:
 
